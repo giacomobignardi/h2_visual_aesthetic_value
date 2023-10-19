@@ -1,0 +1,26 @@
+---
+title: "phenotypic_cor_replication"
+author: "Giacomo Bignardi"
+date: "2023-10-10"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+#clean working enviroment 
+rm(list = ls())
+wdOA = substr(
+  getwd(),
+  0,
+  nchar(getwd())-nchar("03_outputs/report")-1
+)
+wdOA_Data = "01_input"
+wdOA_scripts = "02_scripts"
+wdOA_output = "03_outputs/processedData"
+wdNOA_ImageOutput = "05_Figures"
+#load phenotypic correlations 
+load(sprintf("%s/%s/04_review/03_report_pheno_cor_replication.RData",wdOA,wdOA_output))
+```
+
+## S9. Phenotypic correlations replicate in a third non-overlapping sample
+
+We replicated phenotypic correlations in the same independent sample used to compute the stability of taste-typicality and evaluation-bias (see S8 for details). We followed the same procedure outlined for all samples and computed Pearson correlations between taste-typicality for scenes and faces. Estimates were in line with what we have reported for the other two samples (as reported in main Figure 3), with *r* = `r round(pheno_tt_1$estimate,2)`, 95% CI [`r round(pheno_tt_1$conf.int,2)[1]`, `r round(pheno_tt_1$conf.int,2)[2]`], *p* = `r round(pheno_tt_1$p.value,3)`, computed from data obtained on the first test, and *r* = `r round(pheno_tt_2$estimate,2)`, 95% CI [`r round(pheno_tt_2$conf.int,2)[1]`, `r round(pheno_tt_2$conf.int,2)[2]`], *p* = `r round(pheno_tt_2$p.value,3)`, computed on data obtained on the following test (3 days apart, see above S8). Similar conclusions were reached by computing correlations between evaluation-bias for scenes and faces, with with *r* = `r round(pheno_eb_1$estimate,2)`, 95% CI [`r round(pheno_eb_1$conf.int,2)[1]`, `r round(pheno_eb_1$conf.int,2)[2]`], *p* = `r round(pheno_eb_1$p.value,3)`, and *r* = `r round(pheno_eb_2$estimate,2)`, 95% CI [`r round(pheno_eb_2$conf.int,2)[1]`, `r round(pheno_eb_2$conf.int,2)[2]`], *p* = `r round(pheno_eb_2$p.value,3)`, first and second test, respectively. Thus, we replicated the finding obtained from the other two partially overlapping samples that taste-typicality and evaluation-bias scores tend to be partially shared across visual domains.

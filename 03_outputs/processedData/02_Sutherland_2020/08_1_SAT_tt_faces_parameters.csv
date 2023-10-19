@@ -1,0 +1,7 @@
+parameter,lbound,estimate,ubound,expected_full,expected_reduced
+vZ,0.0381,0.0414,0.0451,ADE,AE
+cMZ21,0.0088,0.0136,0.0184,ADE,AE
+cDZ21,-0.0037,0.0034,0.0103,ADE,AE
+"MZ.corMZ[2,1]",0.2186,0.3289,0.4273,ADE,AE
+"DZ.corDZ[2,1]",-0.0882,0.083,0.246,ADE,AE
+mZ,0.9256,0.998,1.0706,ADE,AE

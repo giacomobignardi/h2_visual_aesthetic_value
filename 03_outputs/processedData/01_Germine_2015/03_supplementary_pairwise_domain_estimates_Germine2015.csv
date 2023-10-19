@@ -1,0 +1,4 @@
+Domain,emmean_z,lower.CL_z,upper.CL_z,emmean_r,lower.CL_r,upper.CL_r
+abstract,0.396,0.377,0.414,0.376,0.36,0.392
+scenes,0.951,0.933,0.968,0.74,0.732,0.748
+faces,0.702,0.684,0.72,0.606,0.594,0.617

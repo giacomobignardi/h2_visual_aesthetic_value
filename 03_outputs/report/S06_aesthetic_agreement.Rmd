@@ -1,0 +1,34 @@
+---
+title: "supplementary_aesthetic_agreement"
+author: "Giacomo Bignardi"
+date: "2023-10-11"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+#clean working enviroment 
+rm(list = ls())
+wdOA = substr(
+  getwd(),
+  0,
+  nchar(getwd())-nchar("03_outputs/report")-1
+)
+wdOA_Data = "01_input"
+wdOA_scripts = "02_scripts"
+wdOA_output = "03_outputs/processedData"
+wdNOA_ImageOutput = "05_Figures"
+#load aesthetic agreement output across samples
+load(sprintf("%s/%s/01_Germine_2015/03_report_aesthetic_agreement.Rdata",wdOA,wdOA_output))
+load(sprintf("%s/%s/02_Sutherland_2020/03_report_aesthetic_agreement_val.Rdata",wdOA,wdOA_output))
+```
+
+## Monozygotic twins show higher pairwise aesthetic agreement than dizygotic twins and unrelated pairs: results with outliers and from the validation sample.
+
+To create a population reference for the pairwise aesthetic agreement, we additionally computationally created unrelated pairs (UR) with pseudo-random pairing by matching every second member of a pair with a first member from another pair. UR pairs were matched for sex and did not differ in age within each domain (all Welch two-sample t-tests p > .9). Before analysis, seven pairs were removed due to extreme *$inter_r$* values (3 UR and 4 MZ pairs). Beyond the main effect of pair class reported in the main manuscript, the type III 3X3 (domain X pair class) ANOVA carried out on Fisher z transformed *$inter_z$* values, excluding outliers, revealed a significant large main effect of visual domain, *F*(`r anova_interR_PairsXDomain_unballanced$Df[3]`, `r anova_interR_PairsXDomain_unballanced$Df[5]`) = `r round(anova_interR_PairsXDomain_unballanced$'F value'[3], 2)`, *p*  < .001 (*$η_p^2$* =  `r round(effect_size_anova$Eta2_partial[2],2)`; 95% CI [`r round(effect_size_anova$CI_low[2],2)`, `r round(effect_size_anova$CI_high[2],2)`]). 
+The differences between marginal pairwise agreement averaged across pair classes aligned with multilevel modelling results, with abstract images evoking the highest degree of individual differences, and thus the lower level of pairwise agreement, *$inter_r$* = `r  round(emmDomain_estimates_csv[emmDomain_estimates_csv$Domain == "abstract",]$emmean_r,2)` (95% CI [`r  round(emmDomain_estimates_csv[emmDomain_estimates_csv$Domain == "abstract",]$lower.CL_r,2)`, `r  round(emmDomain_estimates_csv[emmDomain_estimates_csv$Domain == "abstract",]$upper.CL_r,2)`]). In contrast images of scenes and faces evoked higher agreement in aesthetic preferences, *$inter_r$* = `r  round(emmDomain_estimates_csv[emmDomain_estimates_csv$Domain == "scenes",]$emmean_r,2)` (95% CI [`r  round(emmDomain_estimates_csv[emmDomain_estimates_csv$Domain == "scenes",]$lower.CL_r,2)`, `r  round(emmDomain_estimates_csv[emmDomain_estimates_csv$Domain == "scenes",]$upper.CL_r,2)`]), *$inter_r$* = `r  round(emmDomain_estimates_csv[emmDomain_estimates_csv$Domain == "faces",]$emmean_r,2)` (95% CI [`r  round(emmDomain_estimates_csv[emmDomain_estimates_csv$Domain == "faces",]$lower.CL_r,2)`, `r  round(emmDomain_estimates_csv[emmDomain_estimates_csv$Domain == "faces",]$upper.CL_r,2)`]); all *p* < .001, Bonferroni corrected). 
+
+Results obtained from the same ANOVA, but without excluding outliers, revealed similar results, with a main effect of visual domain, *F*(`r anova_interR_PairsXDomain_unballanced_out$Df[3]`, `r anova_interR_PairsXDomain_unballanced_out$Df[5]`) = `r round(anova_interR_PairsXDomain_unballanced_out$'F value'[3], 2)`, *p*  < .001 (*$η_p^2$* =  `r round(effect_size_anova_out$Eta2_partial[2],2)`; 95% CI [`r round(effect_size_anova_out$CI_low[2],2)`, `r round(effect_size_anova_out$CI_high[2],2)`]), as well as the small effect of pair class on pairwise aesthetic agreement reported in the main manuscript, *F*(`r anova_interR_PairsXDomain_unballanced_out$Df[2]`, `r anova_interR_PairsXDomain_unballanced_out$Df[5]`) = `r round(anova_interR_PairsXDomain_unballanced_out$'F value'[2], 2)`, *p*  < .001 (*$η_p^2$* =  `r round(effect_size_anova_out$Eta2_partial[1],2)`; 95% CI [`r round(effect_size_anova_out$CI_low[1],2)`, `r round(effect_size_anova_out$CI_high[1],2)`]). 
+
+Results were replicated in the validation sample. After removing six pairs that represented extreme outliers in their pairwise agreement (3 Pseudo-Random Unrelated [UR], 2DZ, and 1MZ), a 2X3 (domain X pair class) ANOVA carried out on the *$inter_z$* scores was significant for domain and pair class, and comparable to the main analysis, with a significant main effects of visual domain, *F*(`r anova_interR_PairsXDomain_unballanced_val$Df[3]`, `r anova_interR_PairsXDomain_unballanced_val$Df[5]`) = `r round(anova_interR_PairsXDomain_unballanced_val$'F value'[3], 2)`, *p*  < .001 (*$η_p^2$* =  `r round(effect_size_anova_val$Eta2_partial[2],2)`; 95% CI [`r round(effect_size_anova_val$CI_low[2],2)`, `r round(effect_size_anova_val$CI_high[2],2)`])  and pair class, *F*(`r anova_interR_PairsXDomain_unballanced_val$Df[2]`, `r anova_interR_PairsXDomain_unballanced_val$Df[5]`) = `r round(anova_interR_PairsXDomain_unballanced_val$'F value'[2], 2)`, *p*  < .001 (*$η_p^2$* =  `r round(effect_size_anova_val$Eta2_partial[1],2)`; 95% CI [`r round(effect_size_anova_val$CI_low[1],2)`, `r round(effect_size_anova$CI_high[1],2)`]).
+
+Results were unchanged with the inclusion of outliers, *F*(`r anova_interR_PairsXDomain_unballanced_val_out$Df[3]`, `r anova_interR_PairsXDomain_unballanced_val_out$Df[5]`) = `r round(anova_interR_PairsXDomain_unballanced_val_out$'F value'[3], 2)`, *p*  < .001 (*$η_p^2$* =  `r round(effect_size_anova_val_out$Eta2_partial[2],2)`; 95% CI [`r round(effect_size_anova_val_out$CI_low[2],2)`, `r round(effect_size_anova_val_out$CI_high[2],2)`])  and  *F*(`r anova_interR_PairsXDomain_unballanced_val_out$Df[3]`, `r anova_interR_PairsXDomain_unballanced_val_out$Df[5]`) = `r round(anova_interR_PairsXDomain_unballanced_val_out$'F value'[3], 2)`, *p*  < .001 (*$η_p^2$* =  `r round(effect_size_anova_val_out$Eta2_partial[1],2)`; 95% CI [`r round(effect_size_anova_val_out$CI_low[1],2)`, `r round(effect_size_anova_val_out$CI_high[1],2)`]), respectively. Comparisons of *$inter_r$* marginal means averaged across domains pair classes were all significant (p< .001) and consistent with the directionality of the effects reported in the original sample. Finally, planned comparisons across pair classes within domains confirmed that MZ> DZ> UR within all domains, all p< .05. 

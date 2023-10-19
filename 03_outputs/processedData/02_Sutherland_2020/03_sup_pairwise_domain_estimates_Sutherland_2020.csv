@@ -1,0 +1,3 @@
+Domain,emmean_z,lower.CL_z,upper.CL_z,emmean_r,lower.CL_r,upper.CL_r
+scenes val.,1.004,0.986,1.023,0.763,0.756,0.771
+faces val.,0.751,0.733,0.77,0.636,0.625,0.647

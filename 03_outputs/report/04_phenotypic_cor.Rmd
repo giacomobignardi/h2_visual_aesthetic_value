@@ -1,0 +1,26 @@
+---
+title: "phenotypic_correlations"
+author: "Giacomo Bignardi"
+date: "2023-10-10"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+#clean working enviroment 
+rm(list = ls())
+wdOA = substr(
+  getwd(),
+  0,
+  nchar(getwd())-nchar("03_outputs/report")-1
+)
+wdOA_Data = "01_input"
+wdOA_scripts = "02_scripts"
+wdOA_output = "03_outputs/processedData"
+wdNOA_ImageOutput = "05_Figures"
+#load phenotypic correlations 
+load(sprintf("%s/%s/01_Germine_2015/11_phenotypic_cor_notsig.rData",wdOA,wdOA_output))
+```
+
+## Multivariate CTD model shows shared and distinct genetic influences on inter-individual differences in aesthetic value across visual domains.(part1)
+
+We went on to investigate the associations between taste-typicality and evaluation-bias across the different visual domains. Correlations between taste-typicality and evaluation-bias twins scores are shown in Figure 3. On the one hand, perhaps unsurprisingly, correlations between taste-typicality and evaluation-bias were not significant (all *p* > .05, Bonferroni corrected for 15 comparisons), except for taste-typicality for scenes and evaluation-bias for faces (*r*(`r cor_sce_fac_t1$parameter`) = `r round(cor_sce_fac_t1$estimate,2)`, *p* = `r round(cor_sce_fac_padj_t1,3)`, Bonferroni corrected), which, however, did not replicate for other twin members (*r*(`r cor_sce_fac_t2$parameter`) = `r round(cor_sce_fac_t2$estimate,2)`, *p* = `r round(cor_sce_fac_padj_t2,2)`, Bonferroni corrected, see Figure 3). This was expected, given that the two metrics strongly correlate with the two major orthogonal axes of covariation (see PCA results above). On the other hand, correlations for taste-typicality and evaluation-bias across domains were significant, ranging from small to moderate, with the exception of taste-typicality for abstract images and faces, which was not significant, *r*(`r cor_tt_abs_fac_t1$parameter`) = `r round(cor_tt_abs_fac_t1$estimate,2)`, *p* > .99 and *r*(`r cor_tt_abs_fac_t2$parameter`) = `r round(cor_tt_abs_fac_t2$estimate,2)`, *p* = `r round(cor_tt_abs_fac_adj_t2,2)`. Thus, individuals with taste-typicality and evaluation-bias scores in one domain tend to have similar scores in others. Results were replicated in a third, fully independent sample (see Supplementary S9). 

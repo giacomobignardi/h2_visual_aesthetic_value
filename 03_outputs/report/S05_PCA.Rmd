@@ -1,0 +1,28 @@
+---
+title: "Supplementary_PCA"
+author: "Giacomo Bignardi"
+date: "2023-12-10"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#clean working enviroment 
+rm(list = ls())
+wdOA = substr(
+  getwd(),
+  0,
+  nchar(getwd())-nchar("03_outputs/report")-1
+)
+wdOA_Data = "01_input"
+wdOA_scripts = "02_scripts"
+wdOA_output = "03_outputs/processedData"
+wdNOA_ImageOutput = "05_Figures"
+#load PCA output across samples
+load(sprintf("%s/%s/01_Germine_2015/05_report_PCA.Rdata",wdOA,wdOA_output))
+load(sprintf("%s/%s/02_Sutherland_2020/05_report_PCA_val.Rdata",wdOA,wdOA_output))
+```
+
+## S5: Principal Component Analysis 
+
+We conducted Principal Component Analysis (PCA) to reduce the dimensionality of individual ratings, where ratings per image are dimensions and points are individuals. The Kaiser–Meyer–Olkin MSA (Measure of Sampling Adequacy) was MSA = 0.95, MSA = 0.94, and MSA = 0.98, for abstract images, scenes and faces, respectively (first member twin only; MSA = 0.95, MSA = 0.95, and MSA = 0.98, for the other twin members). The scree plot representing the proportion of overall variance explained by each component is represented in Figure S5a. Comparable to the results obtained on the first members of a twin pair, the individual scores extracted from the first and the second PC for second members only jointly explained `r round(PC12_AO_var_explained_t2_Germine,2)*100`%, `r round(PC12_SC_var_explained_t2_Germine,2)*100`%, and `r round(PC12_FA_var_explained_t2_Germine,2)*100`% of the individual variance in ratings for abstract images, images of scenes, and images of faces, respectively. Results were similar in the validation sample, with `r round(PC12_SC_var_explained_t1_Sutherland,2)*100`%, and `r round(PC12_FA_var_explained_t1_Sutherland,2)*100`% , and `r round(PC12_SC_var_explained_t2_Sutherland,2)*100`%, and `r round(PC12_FA_var_explained_t2_Sutherland,2)*100`% , of the total variance in individual ratings per scene and faces being jointly explained by the first two PCs. Figure S5b maps the facets of aesthetic value, namely evaluation-bias and taste-typicality, to the PC scores. Finally, as shown in figure S5c, PCA indicated our results obtained only with the first members per pair to be robust on the other members.  Evaluation-bias scores and taste-typicality were also related to the two major axes of variability in aesthetic values. Pearson correlations between the individual evaluation-bias scores extracted from the first PC were all r > .99. Correlations between the second twin mebers scores extracted from the second component and taste-typicality Fisher z transformed values were *r*(`r PC_AO_cor_tt_t2_Germine$parameter`) = `r round(PC_AO_cor_tt_t2_Germine$estimate,2)`, 95% CI [`r round(PC_AO_cor_tt_t2_Germine$conf.int,2)[1]`, `r round(PC_AO_cor_tt_t2_Germine$conf.int,2)[2]`], for abstract images, *r*(`r PC_SC_cor_tt_t2_Germine$parameter`) = `r round(PC_SC_cor_tt_t2_Germine$estimate,2)`, 95% CI [`r round(PC_SC_cor_tt_t2_Germine$conf.int,2)[1]`, `r round(PC_SC_cor_tt_t2_Germine$conf.int,2)[2]`], for scenes, and *r*(`r PC_FA_cor_tt_t1_Germine$parameter`) = `r round(PC_FA_cor_tt_t2_Germine$estimate,2)`, 95% CI [`r round(PC_FA_cor_tt_t2_Germine$conf.int,2)[1]`, `r round(PC_FA_cor_tt_t2_Germine$conf.int,2)[2]`], for faces (all *p* < .001). Results were replicated in the validation sample, with correlations between the first PC and evaluation-bias scores being all r > .99, and correlations between the second PC and taste-typicality equal to *r*(`r PC_SC_cor_tt_t2_Sutherland$parameter`) = `r round(PC_SC_cor_tt_t2_Sutherland$estimate,2)`, 95% CI [`r round(PC_SC_cor_tt_t2_Sutherland$conf.int,2)[1]`, `r round(PC_SC_cor_tt_t2_Sutherland$conf.int,2)[2]`],  for scenes, and *r*(`r PC_FA_cor_tt_t2_Sutherland$parameter`) = `r round(PC_FA_cor_tt_t2_Sutherland$estimate,2)`, 95% CI [`r round(PC_FA_cor_tt_t2_Sutherland$conf.int,2)[1]`, `r round(PC_FA_cor_tt_t2_Sutherland$conf.int,2)[2]`] for faces (all *p* < .001). These results are consistent with what reported in the main manuscript. We note that these results cast new light on the major dimensions of individual differences in aesthetic value. Recently, Chen et al. (CITE) showed that visual and auditory taste-typicality scores are strongly related to the first principal component obtained from the standardised aesthetic ratings for such stimuli. Here we propose that when taking unstandardised ratings, evaluation-bias scores, but not taste-typicality scores, capture the majority of individual variability in aesthetic ratings, with taste-typicality being strongly related to only the second dimension. 

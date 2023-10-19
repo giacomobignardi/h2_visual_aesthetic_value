@@ -1,0 +1,7 @@
+trait,rowname,lbound,estimate,ubound,sample,facet,correlation
+scenes-faces,"mulAEvc.corr[2,1]",0.3568,0.5091,0.6476,Germine et al. 2015,e-b,rA
+scenes-abstracts,"mulAEvc.corr[3,1]",0.4316,0.5903,0.5903,Germine et al. 2015,e-b,rA
+abstracts-faces,"mulAEvc.corr[3,2]",0.3926,0.5306,0.6547,Germine et al. 2015,e-b,rA
+scenes-faces,"mulAEvc.corr[2,7]",0.312,0.3825,0.4488,Germine et al. 2015,e-b,rE
+scenes-abstracts,"mulAEvc.corr[3,7]",0.4685,0.5311,0.5884,Germine et al. 2015,e-b,rE
+faces-abstracts,"mulAEvc.corr[3,8]",0.3178,0.391,0.46,Germine et al. 2015,e-b,rE

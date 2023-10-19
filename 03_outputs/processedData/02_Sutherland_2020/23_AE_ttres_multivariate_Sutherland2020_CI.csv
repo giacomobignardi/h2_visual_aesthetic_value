@@ -1,0 +1,19 @@
+rowname,lbound,estimate,ubound,sample,facet
+VA11,0.19,0.3024,0.4179,Sutherland et al. 2020,e-b res.
+VC11,0,0,0,Sutherland et al. 2020,e-b res.
+VE11,0.6044,0.7021,0.8182,Sutherland et al. 2020,e-b res.
+SA11,0.1931,0.301,0.3998,Sutherland et al. 2020,e-b res.
+SC11,0,0,0,Sutherland et al. 2020,e-b res.
+SE11,0.6002,0.699,0.8069,Sutherland et al. 2020,e-b res.
+VA21,0.0164,0.0988,0.182,Sutherland et al. 2020,e-b res.
+VA22,0.1759,0.2864,0.3993,Sutherland et al. 2020,e-b res.
+VC21,0,0,0,Sutherland et al. 2020,e-b res.
+VC22,0,0,0,Sutherland et al. 2020,e-b res.
+VE21,0.0932,0.1682,0.2502,Sutherland et al. 2020,e-b res.
+VE22,0.6195,0.7174,0.8334,Sutherland et al. 2020,e-b res.
+SA21,0.1068,0.3699,0.638,Sutherland et al. 2020,e-b res.
+SA22,0.1784,0.2853,0.3839,Sutherland et al. 2020,e-b res.
+SC21,NA,0,0,Sutherland et al. 2020,e-b res.
+SC22,0,0,0,Sutherland et al. 2020,e-b res.
+SE21,0.362,0.6301,0.9168,Sutherland et al. 2020,e-b res.
+SE22,0.6161,0.7147,0.8216,Sutherland et al. 2020,e-b res.

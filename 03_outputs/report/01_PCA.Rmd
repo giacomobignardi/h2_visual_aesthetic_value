@@ -1,0 +1,30 @@
+---
+title: "PCA"
+author: "Giacomo Bignardi"
+date: "2023-09-20"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#clean working enviroment 
+rm(list = ls())
+wdOA = substr(
+  getwd(),
+  0,
+  nchar(getwd())-nchar("03_outputs/report")-1
+)
+wdOA_Data = "01_input"
+wdOA_scripts = "02_scripts"
+wdOA_output = "03_outputs/processedData"
+wdNOA_ImageOutput = "05_Figures"
+#load PCA output across samples
+load(sprintf("%s/%s/01_Germine_2015/05_report_PCA.Rdata",wdOA,wdOA_output))
+load(sprintf("%s/%s/02_Sutherland_2020/05_report_PCA_val.Rdata",wdOA,wdOA_output))
+```
+
+## Measures of inter-individual differences in aesthetic evaluation.
+
+...
+
+To confirm that these individual-level metrics captured a substantial proportion of inter-individual variability in aesthetic evaluation, we computed a Principal Component Analysis (PCA) of the individual ratings for each domain. PCA was run only on the first members of each pair to avoid familial confounding. We identified two major axes of variability in the aesthetic evaluation of images, which jointly explained `r round(PC12_AO_var_explained_t1_Germine,2)*100`%, `r round(PC12_SC_var_explained_t1_Germine,2)*100`%, and `r round(PC12_FA_var_explained_t1_Germine,2)*100`% of the variance in ratings for abstract images and images of scenes and faces, respectively. The Pearson correlations between the individual scores extracted from the first PC and the evaluation-bias measure were all *r* > .99 in the discovery sample. Correlations between the individual scores extracted from the second component and taste-typicality Fisher z transformed values (see Methods) were *r*(`r PC_AO_cor_tt_t1_Germine$parameter`) = `r round(PC_AO_cor_tt_t1_Germine$estimate,2)`, 95% CI [`r round(PC_AO_cor_tt_t1_Germine$conf.int,2)[1]`, `r round(PC_AO_cor_tt_t1_Germine$conf.int,2)[2]`], for abstract images, *r*(`r PC_SC_cor_tt_t1_Germine$parameter`) = `r round(PC_SC_cor_tt_t1_Germine$estimate,2)`, 95% CI [`r round(PC_SC_cor_tt_t1_Germine$conf.int,2)[1]`, `r round(PC_SC_cor_tt_t1_Germine$conf.int,2)[2]`], for scenes, and *r*(`r PC_FA_cor_tt_t1_Germine$parameter`) = `r round(PC_FA_cor_tt_t1_Germine$estimate,2)`, 95% CI [`r round(PC_FA_cor_tt_t1_Germine$conf.int,2)[1]`, `r round(PC_FA_cor_tt_t1_Germine$conf.int,2)[2]`], for faces (all *p* < .001). Results were replicated in the validation sample, with correlations between the first PC and evaluation-bias scores being all r > .99, and correlations between the second PC and taste-typicality equal to *r*(`r PC_SC_cor_tt_t1_Sutherland$parameter`) = `r round(PC_SC_cor_tt_t1_Sutherland$estimate,2)`, 95% CI [`r round(PC_SC_cor_tt_t1_Sutherland$conf.int,2)[1]`, `r round(PC_SC_cor_tt_t1_Sutherland$conf.int,2)[2]`],  for scenes, and *r*(`r PC_FA_cor_tt_t1_Sutherland$parameter`) = `r round(PC_FA_cor_tt_t1_Sutherland$estimate,2)`, 95% CI [`r round(PC_FA_cor_tt_t1_Sutherland$conf.int,2)[1]`, `r round(PC_FA_cor_tt_t1_Sutherland$conf.int,2)[2]`] for faces (all *p* < .001). Correlations were similar for second twin members (see Supplementary S5 for details; note that for ease of interpretation, when needed, all PCs were flipped to display positive correlations with evaluation-bias and taste-typicality). These findings indicate that taste-typicality and evaluation-bias scores relate to the major dimensions of inter-individual differences in aesthetic value.

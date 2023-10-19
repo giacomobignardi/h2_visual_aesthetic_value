@@ -1,0 +1,33 @@
+---
+title: "sensitivity_analysis"
+author: "Giacomo Bignardi"
+date: "2023-10-11"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+#clean working enviroment 
+rm(list = ls())
+wdOA = substr(
+  getwd(),
+  0,
+  nchar(getwd())-nchar("03_outputs/report")-1
+)
+wdOA_Data = "01_input"
+wdOA_scripts = "02_scripts"
+wdOA_output = "03_outputs/processedData"
+wdNOA_ImageOutput = "05_Figures"
+library(tidyverse)
+#load phenotypic correlations 
+ACE_faces_ebr_val_est = read_csv(sprintf("%s/%s/02_Sutherland_2020/13_1_ADE_ebres_faces_vc_bestModel_val.csv", wdOA,wdOA_output))%>% mutate(component = c("VA","VC","VE","SA","SC","SE"))
+ACE_scenes_ebr_val_est = read_csv(sprintf("%s/%s/02_Sutherland_2020/13_2_ADE_ebres_scenes_vc_bestModel_val.csv", wdOA,wdOA_output))%>% mutate(component = c("VA","VC","VE","SA","SC","SE"))
+
+ADE_faces_ttr_val_est = read_csv(sprintf("%s/%s/02_Sutherland_2020/14_1_ADE_ttres_faces_vc_bestModel_val.csv", wdOA,wdOA_output))%>% mutate(component = c("VA","VD","VE","SA","SD","SE"))
+ADE_scenes_ttr_val_est = read_csv(sprintf("%s/%s/02_Sutherland_2020/14_2_ADE_ttres_scenes_vc_bestModel_val.csv", wdOA,wdOA_output))%>% mutate(component = c("VA","VC","VE","SA","SC","SE"))
+
+```
+
+## Sensitivity analyses discount contributions of potential confounding effects.
+
+...Crucially, univariate and multivariate CTD modelling indicated that the same models specified for uncontrolled scores fitted residual scores with estimates for the genetic components being similar to those obtained without controlling for confounders, with *h*$^2$ being equal to *h*$^2$ = `r round(ADE_scenes_ttr_val_est %>% filter(component == "SA") %>% pull(estimate),2)`, 95% CI [`r round(ADE_scenes_ttr_val_est %>% filter(component == "SA") %>% pull(lbound),2)`, `r round(ADE_scenes_ttr_val_est %>% filter(component == "SA") %>% pull(ubound),2)`] and *h*$^2$ = `r round(ADE_faces_ttr_val_est %>% filter(component == "SA") %>% pull(estimate),2)`, 95% CI [`r round(ADE_faces_ttr_val_est %>% filter(component == "SA") %>% pull(lbound),2)`, `r round(ADE_faces_ttr_val_est %>% filter(component == "SA") %>% pull(ubound),2)`], for residualised taste-typicality, and *h*$^2$ = `r round(ACE_scenes_ebr_val_est %>% filter(component == "SA") %>% pull(estimate),2)`, 95% CI [`r round(ACE_scenes_ebr_val_est %>% filter(component == "SA") %>% pull(lbound),2)`, `r round(ACE_scenes_ebr_val_est %>% filter(component == "SA") %>% pull(ubound),2)`]  and *h*$^2$ = `r round(ACE_faces_ebr_val_est %>% filter(component == "SA") %>% pull(estimate),2)`, 95% CI [`r round(ACE_faces_ebr_val_est %>% filter(component == "SA") %>% pull(lbound),2)`, `r round(ACE_faces_ebr_val_est %>% filter(component == "SA") %>% pull(ubound),2)`], for residualised evaluation-bias, for scenes and faces, respectively (see Supplementary Table S2 and Supplementary 10, Figure S9 for further h2b, ρA, and ρE estimates). Therefore, sources of variability in major dimensions of aesthetic value, as found in this study, are not confounded by individuals’ general typicality or overall biases in rating scale uses.
+

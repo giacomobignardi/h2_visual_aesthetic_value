@@ -1,0 +1,5 @@
+trait,rowname,lbound,estimate,ubound,sample,facet,correlation
+scenes-faces,"mulAEfa.corr[1,2]",0.3742,0.5324,0.6917,Germine et al. 2015,t-t,rA
+scenes-faces,"mulAEfa.corr[2,7]",0.0573,0.1359,0.2129,Germine et al. 2015,t-t,rE
+scenes-abstracts,"mulAEfa.corr[3,7]",0.0995,0.1664,0.2314,Germine et al. 2015,t-t,rE
+faces-abstracts,"mulAEfa.corr[3,8]",0.0068,0.0758,0.1437,Germine et al. 2015,t-t,rE

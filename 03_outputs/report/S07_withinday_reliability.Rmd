@@ -1,0 +1,32 @@
+---
+title: "within_day_reliability"
+author: "Giacomo Bignardi"
+date: "2023-10-13"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+#clean working enviroment 
+rm(list = ls())
+wdOA = substr(
+  getwd(),
+  0,
+  nchar(getwd())-nchar("03_outputs/report")-1
+)
+wdOA_Data = "01_input"
+wdOA_scripts = "02_scripts"
+wdOA_output = "03_outputs/processedData"
+wdNOA_ImageOutput = "05_Figures"
+#load within days reliabilities
+load(sprintf("%s/%s/04_review/02_report_withinday_reliability_eb.RData",wdOA,wdOA_output))
+load(sprintf("%s/%s/04_review/02_report_withinday_reliability_tt.RData",wdOA,wdOA_output))
+```
+
+## S7. Within-day test-retest reliabilities for taste-typicality and evaluation-bias.
+
+Since some degree of unknown unreliability of taste-typicality and evaluation-bias can upwardly bias, and hence confound, estimates of unique environmental effects, we quantified reliabilities ($R_{xx}$) of such metrics. First, we computed taste-typicality and evaluation-bias separately and only for the repeated images (15 for abstract images, 15 for scenes, and 60 for faces). In the discovery sample, Pearson correlations for the taste-typicality and evaluation-bias within individuals, computed on only one pair per twin, were *r* = `r round(r_tt_abstracts_Germine$estimate,2)`, 95% CI [`r round(r_tt_abstracts_Germine$conf.int,2)[1]`, `r round(r_tt_abstracts_Germine$conf.int,2)[2]`], *r* = `r round(r_tt_scenes_Germine$estimate,2)`, 95% CI [`r round(r_tt_scenes_Germine$conf.int,2)[1]`, `r round(r_tt_scenes_Germine$conf.int,2)[2]`], and *r* = `r round(r_tt_faces_Germine$estimate,2)`, 95% CI [`r round(r_tt_faces_Germine$conf.int,2)[1]`, `r round(r_tt_faces_Germine$conf.int,2)[2]`] taste-typicality, and *r* = `r round(r_eb_abstracts_Germine$estimate,2)`, 95% CI [`r round(r_eb_abstracts_Germine$conf.int,2)[1]`, `r round(r_eb_abstracts_Germine$conf.int,2)[2]`], *r* = `r round(r_eb_scenes_Germine$estimate,2)`, 95% CI [`r round(r_eb_scenes_Germine$conf.int,2)[1]`, `r round(r_eb_scenes_Germine$conf.int,2)[2]`], and *r* = `r round(r_eb_faces_Germine$estimate,2)`, 95% CI [`r round(r_eb_faces_Germine$conf.int,2)[1]`, `r round(r_eb_faces_Germine$conf.int,2)[2]`] for evaluation bias, for abstract images, scenes, and faces, respectively. These results were similar to the validation sample, with Pearson correlations of *r* = `r round(r_tt_scenes_Sutherland$estimate,2)`, 95% CI [`r round(r_tt_scenes_Sutherland$conf.int,2)[1]`, `r round(r_tt_scenes_Sutherland$conf.int,2)[2]`] and *r* = `r round(r_tt_faces_Sutherland$estimate,2)`, 95% CI [`r round(r_tt_faces_Sutherland$conf.int,2)[1]`, `r round(r_tt_faces_Sutherland$conf.int,2)[2]`], and *r* = `r round(r_eb_scenes_Sutherland$estimate,2)`, 95% CI [`r round(r_eb_scenes_Sutherland$conf.int,2)[1]`, `r round(r_eb_scenes_Sutherland$conf.int,2)[2]`] and *r* = `r round(r_eb_faces_Sutherland$estimate,2)`, 95% CI [`r round(r_eb_faces_Sutherland$conf.int,2)[1]`, `r round(r_eb_faces_Sutherland$conf.int,2)[2]`] for evaluation-bias (scenes and faces, respectively). 
+
+To get a more precise and relevant estimate of the reliability of the metrics computed on the averages of the repeated metrics, as we have done in our main analyses, we also used Intra Class Coefficient (*ICC*) of taste-typicality and evaluation-bias to estimate $R_{xx}$. In the discovery sample, taste-typicality $R_{xx}$ were all good; *ICC(2,k)* =.90, *ICC(2,k)* =.89, and *ICC(2,k)* =. 87, while evaluation bias $R_{xx}$ were all excellent,  *ICC(2,k)* = `r round(icc_eb_abstracts_Germine$results[icc_eb_abstracts_Germine$results$type == "ICC2k", ]$ICC,2)`, *ICC(2,k)* = `r round(icc_eb_scenes_Germine$results[icc_eb_scenes_Germine$results$type == "ICC2k", ]$ICC,2)`, and *ICC(2,k)* = `r round(icc_eb_faces_Germine$results[icc_eb_faces_Germine$results$type == "ICC2k", ]$ICC,2)`. Results were nearly identical in the validation sample: with *ICC(2,k)* =.87 and *ICC(2,k)* =.91, for taste-typicality, and *ICC(2,k)* = `r round(icc_eb_scenes_Germine$results[icc_eb_scenes_Germine$results$type == "ICC2k", ]$ICC,2)` and *ICC(2,k)* = `r round(icc_eb_faces_Germine$results[icc_eb_faces_Germine$results$type == "ICC2k", ]$ICC,2)`, evaluation-bias (scenes and faces, respectively). 
+These results indicate good reliability of taste-typicality and evaluation-bias.
+
+

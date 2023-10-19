@@ -1,0 +1,29 @@
+---
+title: "univariate_CTD"
+author: "Giacomo Bignardi"
+date: "2023-10-10"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+#clean working enviroment 
+rm(list = ls())
+wdOA = substr(
+  getwd(),
+  0,
+  nchar(getwd())-nchar("03_outputs/report")-1
+)
+wdOA_Data = "01_input"
+wdOA_scripts = "02_scripts"
+wdOA_output = "03_outputs/processedData"
+wdNOA_ImageOutput = "05_Figures"
+#load CTD output across samples
+mod_com_final = read.csv(sprintf("%s/%s/03_CTD_results/02_SF1_SAT_results.csv",wdOA,wdOA_output))
+mod_com_ACDE_final = read.csv(sprintf("%s/%s/03_CTD_results/02_SF2_ACE_results.csv",wdOA,wdOA_output))
+est_ci_ACDE = read.csv(sprintf("%s/%s/03_CTD_results/02_SF3_ACE_ci.csv",wdOA,wdOA_output))
+
+```
+
+## Univariate CTD estimates genetic effects for all dimensions of aesthetic value except taste-typicality for abstract images.
+
+Further model comparisons confirmed that AE models were the best fitting models for taste-typicality (scenes and faces ACE vs AE, *χ2*(Δdf=1), p > .05) and evaluation-bias data (all ACE vs AE, *χ2*(Δdf=1), *p* > .05), for all stimulus domains, except for taste-typicality of abstract images (ACE vs AE, *χ2*(Δdf=1) = `r mod_com_ACDE_final[mod_com_ACDE_final$comparison == "AE" & mod_com_ACDE_final$sample == "Germine et al. 2015" & mod_com_ACDE_final$domain == "abstract" &  mod_com_ACDE_final$facet == "taste_typicality",]$diffLL`, *p* = `r round(mod_com_ACDE_final[mod_com_ACDE_final$comparison == "AE" & mod_com_ACDE_final$sample == "Germine et al. 2015" & mod_com_ACDE_final$domain == "abstract" &  mod_com_ACDE_final$facet == "taste_typicality",]$p,2)`. Genetic influences (A) explained `r round(est_ci_ACDE[est_ci_ACDE$component == "SA" & est_ci_ACDE$sample == "Germine et al. 2015" & est_ci_ACDE$domain == "scenes"&  est_ci_ACDE$facet == "taste_typicality",]$estimate,2)*100`% (*h*$^2$ 95% CI [`r round(est_ci_ACDE[est_ci_ACDE$component == "SA" & est_ci_ACDE$sample == "Germine et al. 2015" & est_ci_ACDE$domain == "scenes"&  est_ci_ACDE$facet == "taste_typicality",]$lbound,2)`; `r round(est_ci_ACDE[est_ci_ACDE$component == "SA" & est_ci_ACDE$sample == "Germine et al. 2015" & est_ci_ACDE$domain == "scenes"&  est_ci_ACDE$facet == "taste_typicality",]$ubound,2)`]) of the variance in taste-typicality for images of scenes, and `r round(est_ci_ACDE[est_ci_ACDE$component == "SA" & est_ci_ACDE$sample == "Germine et al. 2015" & est_ci_ACDE$domain == "abstracts"&  est_ci_ACDE$facet == "evaluation_bias",]$estimate,2)*100`% (*h*$^2$ 95% CI [`r round(est_ci_ACDE[est_ci_ACDE$component == "SA" & est_ci_ACDE$sample == "Germine et al. 2015" & est_ci_ACDE$domain == "abstracts"&  est_ci_ACDE$facet == "evaluation_bias",]$lbound,2)`; `r round(est_ci_ACDE[est_ci_ACDE$component == "SA" & est_ci_ACDE$sample == "Germine et al. 2015" & est_ci_ACDE$domain == "abstracts"&  est_ci_ACDE$facet == "evaluation_bias",]$ubound,2)`]) and `r round(est_ci_ACDE[est_ci_ACDE$component == "SA" & est_ci_ACDE$sample == "Germine et al. 2015" & est_ci_ACDE$domain == "scenes"&  est_ci_ACDE$facet == "evaluation_bias",]$estimate,2)*100`% (*h*$^2$ 95% CI [`r round(est_ci_ACDE[est_ci_ACDE$component == "SA" & est_ci_ACDE$sample == "Germine et al. 2015" & est_ci_ACDE$domain == "scenes"&  est_ci_ACDE$facet == "evaluation_bias",]$lbound,2)`; `r round(est_ci_ACDE[est_ci_ACDE$component == "SA" & est_ci_ACDE$sample == "Germine et al. 2015" & est_ci_ACDE$domain == "scenes"&  est_ci_ACDE$facet == "evaluation_bias",]$ubound,2)`]) of the variance in evaluation-bias for abstract images and scenes. Estimates were similar to those obtained for faces, except for variation in taste-typicality for abstract images, which was entirely explained by environmental influences, with `r round(est_ci_ACDE[est_ci_ACDE$component == "SC" & est_ci_ACDE$sample == "Germine et al. 2015" & est_ci_ACDE$domain == "abstracts"&  est_ci_ACDE$facet == "taste_typicality",]$estimate,2)*100`% (*h*$^2$ 95% CI [`r round(est_ci_ACDE[est_ci_ACDE$component == "SC" & est_ci_ACDE$sample == "Germine et al. 2015" & est_ci_ACDE$domain == "abstracts"&  est_ci_ACDE$facet == "taste_typicality",]$lbound,2)`; `r round(est_ci_ACDE[est_ci_ACDE$component == "SC" & est_ci_ACDE$sample == "Germine et al. 2015" & est_ci_ACDE$domain == "abstracts"&  est_ci_ACDE$facet == "taste_typicality",]$ubound,2)`]) for shared environmental factors (C). Consistent results were observed in the validation sample (see Table 2 for full and restricted model estimates; a comprehensive summary is reported in Supplementary File 2). 

@@ -1,0 +1,30 @@
+---
+title: "aesthetic_agreement"
+author: "Giacomo Bignardi"
+date: "2023-09-20"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+#clean working enviroment 
+rm(list = ls())
+wdOA = substr(
+  getwd(),
+  0,
+  nchar(getwd())-nchar("03_outputs/report")-1
+)
+wdOA_Data = "01_input"
+wdOA_scripts = "02_scripts"
+wdOA_output = "03_outputs/processedData"
+wdNOA_ImageOutput = "05_Figures"
+#load PCA output across samples
+load(sprintf("%s/%s/01_Germine_2015/03_report_aesthetic_agreement.Rdata",wdOA,wdOA_output))
+load(sprintf("%s/%s/02_Sutherland_2020/03_report_aesthetic_agreement_val.Rdata",wdOA,wdOA_output))
+
+```
+
+## Monozygotic twins show higher pairwise aesthetic agreement than dizygotic twins and unrelated pairs.
+
+  To investigate genetic contributions, we used the discovery sample and assessed the extent to which pairwise aesthetic agreement differed across MZ, DZ, and UR pairs. An ANOVA (type III 3X3; domain X pair class) carried out on Fisher z-transformed *$inter_z$* values (see Methods), revealed a significant, albeit small, effect of pair class on pairwise aesthetic agreement, *F*(`r anova_interR_PairsXDomain_unballanced$Df[2]`, `r anova_interR_PairsXDomain_unballanced$Df[5]`) = `r round(anova_interR_PairsXDomain_unballanced$'F value'[2], 2)`, *p*  < .001 (*$η_p^2$* =  `r round(effect_size_anova$Eta2_partial[1],2)`; 95% CI [`r round(effect_size_anova$CI_low[1],2)`, `r round(effect_size_anova$CI_high[1],2)`]; results were robust to inclusion of outliers, see Supplementary S6). Marginal pairwise agreement averaged across visual domains was highest for MZ, followed by DZ and UR pairs, *$inter_r$* = `r  round(emmPairs_estimates_csv[emmPairs_estimates_csv$Pairs == "MZ",]$emmean_r,2)`, 95% CI [`r  round(emmPairs_estimates_csv[emmPairs_estimates_csv$Pairs == "MZ",]$lower.CL_r,2)`, `r  round(emmPairs_estimates_csv[emmPairs_estimates_csv$Pairs == "MZ",]$upper.CL_r,2)`]; *$inter_r$* = `r  round(emmPairs_estimates_csv[emmPairs_estimates_csv$Pairs == "DZ",]$emmean_r,2)`, 95% CI [`r  round(emmPairs_estimates_csv[emmPairs_estimates_csv$Pairs == "DZ",]$lower.CL_r,2)`, `r  round(emmPairs_estimates_csv[emmPairs_estimates_csv$Pairs == "DZ",]$upper.CL_r,2)`], and *$inter_r$* = `r  round(emmPairs_estimates_csv[emmPairs_estimates_csv$Pairs == "UR",]$emmean_r,2)`, 95% CI [`r  round(emmPairs_estimates_csv[emmPairs_estimates_csv$Pairs == "UR",]$lower.CL_r,2)`, `r round(emmPairs_estimates_csv[emmPairs_estimates_csv$Pairs == "UR",]$upper.CL_r,2)`] (all *p* < .001, Bonferroni corrected). 
+
+  Additional posthoc comparisons revealed that pairwise agreement differences were significant for all pair classes (i.e., pairwise agreement MZ > DZ > UR within each domain, all *p* < .05), except for differences between MZ and DZ for faces, for which the difference was not significant (*p* = `r round(emmPairs2Domain_output[which(emmPairs2Domain_output$p.value >.05),]$p.value,2)`). Effect sizes and CI were all above 0, ranging from *d* = `r -round(emmPairs2Domain_effect[order(emmPairs2Domain_effect[,"effect.size"]),][9,]$effect.size,2)`, 95% CI [`r -round(emmPairs2Domain_effect[order(emmPairs2Domain_effect[,"effect.size"]),][9,]$e.s_upper.CL,2)`, `r -round(emmPairs2Domain_effect[order(emmPairs2Domain_effect[,"effect.size"]),][9,]$e.s_lower.CL,2)`], for the observed MZ > DZ pair classes difference for faces, to *d* = `r -round(emmPairs2Domain_effect[order(emmPairs2Domain_effect[,"effect.size"]),][1,]$effect.size,2)`, 95% CI [`r -round(emmPairs2Domain_effect[order(emmPairs2Domain_effect[,"effect.size"]),][1,]$e.s_upper.CL,2)`, `r -round(emmPairs2Domain_effect[order(emmPairs2Domain_effect[,"effect.size"]),][1,]$e.s_lower.CL,2)`], for the MZ > UR pair classes difference for abstract images. Analysis of the validation sample revealed similar results (Figure 2d, see Supplementary 6), consistent with the directionality of all the effects reported in the discovery sample. The only exception was the MZ and DZ pairwise agreement for faces, for which the difference was significant (*p* < .001; *d* = `r -round(emmPairs2Domain_effect_val[emmPairs2Domain_effect_val$contrast=="DZ - MZ" & emmPairs2Domain_effect_val$Domain=="faces val.",]$effect.size,2)`, 95% CI [`r -round(emmPairs2Domain_effect_val[emmPairs2Domain_effect_val$contrast=="DZ - MZ" & emmPairs2Domain_effect_val$Domain=="faces val.",]$e.s_upper.CL,2)`, `r -round(emmPairs2Domain_effect_val[emmPairs2Domain_effect_val$contrast=="DZ - MZ" & emmPairs2Domain_effect_val$Domain=="faces val.",]$e.s_lower.CL,2)`]). Thus, under the assumptions of the CTD, results indicated that genetic factors play a significant, albeit small, role in preferences for visual images. Moreover, results indicated that unrelated familial individuals are less similar in their aesthetic preferences than related ones. 

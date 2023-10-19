@@ -1,0 +1,7 @@
+Pairs,Domain,emmean_z,lower.CL_z,upper.CL_z,emmean_r,lower.CL_r,upper.CL_r
+UR,scenes val.,0.943,0.915,0.97,0.736,0.723,0.749
+DZ,scenes val.,0.995,0.946,1.044,0.76,0.738,0.779
+MZ,scenes val.,1.076,1.042,1.109,0.792,0.779,0.804
+UR,faces val.,0.682,0.654,0.71,0.593,0.574,0.611
+DZ,faces val.,0.741,0.69,0.792,0.63,0.598,0.659
+MZ,faces val.,0.831,0.797,0.865,0.681,0.662,0.699

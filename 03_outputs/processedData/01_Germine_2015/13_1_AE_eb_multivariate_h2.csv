@@ -1,0 +1,4 @@
+VA_scenes,VA_faces,VA_abstracts,VC_scenes,VC_faces,VC_abstracts,VE_scenes,VE_faces,VE_abstracts,SA_scenes,SA_faces,SA_abstracts,SC_scenes,SC_faces,SC_abstracts,SE_scenes,SE_faces,SE_abstracts,sample,facet
+0.255,0.165,0.172,0,0,0,0.745,0.254,0.378,0.255,0.393,0.313,0,0,0,0.745,0.607,0.687,Germine et al. 2015,e-b
+0.165,0.41,0.196,0,0,0,0.254,0.593,0.249,0.393,0.409,0.441,0,0,0,0.607,0.591,0.559,Germine et al. 2015,e-b
+0.172,0.196,0.333,0,0,0,0.378,0.249,0.681,0.313,0.441,0.329,0,0,0,0.687,0.559,0.671,Germine et al. 2015,e-b

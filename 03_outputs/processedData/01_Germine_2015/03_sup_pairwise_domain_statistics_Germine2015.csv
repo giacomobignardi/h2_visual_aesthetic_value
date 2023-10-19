@@ -1,0 +1,4 @@
+contrast,dif_emmean_z,dif_emmean_r,lower.CL_z,upper.CL_z,lower.CL_r,upper.CL_r,df,t.ratio,p.value,effect.size,e.s_lower.CL,e.s_upper.CL
+abstract - faces,-0.307,-0.297,-0.33,-0.283,-0.319,-0.276,4242,-31.33,1.5859542234626722e-193,-1.368,-1.459,-1.278
+abstract - scenes,-0.555,-0.504,-0.578,-0.532,-0.522,-0.487,4242,-56.856,0,-2.476,-2.576,-2.376
+scenes - faces,0.248,0.243,0.226,0.271,0.222,0.265,4242,26.264,1.601655469217633e-140,1.108,1.022,1.194

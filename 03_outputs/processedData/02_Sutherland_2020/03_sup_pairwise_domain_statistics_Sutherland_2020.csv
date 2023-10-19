@@ -1,0 +1,2 @@
+contrast,dif_emmean_z,dif_emmean_r,lower.CL_z,upper.CL_z,lower.CL_r,upper.CL_r,df,t.ratio,p.value,effect.size,e.s_lower.CL,e.s_upper.CL
+scenes val. - faces val.,0.253,0.248,0.232,0.274,0.228,0.268,1836,23.223,8.158027612173383e-105,1.21,1.1,1.319
