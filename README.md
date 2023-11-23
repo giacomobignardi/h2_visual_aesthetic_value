@@ -29,8 +29,8 @@ Code to reproduce specific results or figures included in the subsections of the
 
 ### Measures of inter-individual differences in aesthetic evaluation.
 + Text: /03_outputs/report/01_PCA.Rmd
-+ Fig.1b: /02_scripts/03_CTD_results/00_vizualize.Rmd
-+ Fig.1d: /02_scripts /01_Germine_2015/05_phenotyping_PCA.Rmd
++ Fig.1b: /02_scripts/03_CTD_results/00_vizualize.R
++ Fig.1d: /02_scripts /01_Germine_2015/05_phenotyping_PCA.R
 
 ### Monozygotic twins show higher pairwise aesthetic agreement than dizygotic twins and unrelated pairs.
 + Text: /03_outputs/report/02_aesthetic_agreement.Rmd
@@ -38,14 +38,14 @@ Code to reproduce specific results or figures included in the subsections of the
 ### Univariate CTD estimates genetic effects for all dimensions of aesthetic value except taste-typicality for abstract images.
 + Text: /03_outputs/report/03_univariate_CTD.Rmd
 + Table 2: /02_scripts/02_CTD_outputs/03_comparison_Willoughby2023.R
-+ Fig.2a-f: /02_scripts/03_CTD_results/00_vizualize.Rmd 
++ Fig.2a-f: /02_scripts/03_CTD_results/00_vizualize.R
 + Fig.2g: /02_scripts/03_CTD_results/03_comparison_Willoughby2023.R
 
 ### Multivariate CTD model shows shared and distinct genetic influences on inter-individual differences in aesthetic value across visual domains.
 + Text: 03_outputs/report/04_phenotypic_cor.Rmd
 + Text: 03_outputs/report/05_multivariate_CTD.Rmd
-+ Fig.3a-d: /02_scripts/03_CTD_results/00_vizualize.Rmd
-+ Fig.4c&d: /02_scripts/03_CTD_results/04_multivariate_CTD.Rmd
++ Fig.3a-d: /02_scripts/03_CTD_results/00_vizualize.R
++ Fig.4c&d: /02_scripts/03_CTD_results/04_multivariate_CTD.R
 
 ### Sensitivity analyses discount contributions of potential confounding effects.
 + Text:  06_outputs/report/06_sensitivity_analysis.Rmd
