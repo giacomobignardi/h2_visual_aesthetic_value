@@ -98,14 +98,18 @@ Table: /02_scripts/03_CTD_results/01_SAT_twin_correlations.R
 ### Table S2: Univariate modelling of genetic and environmental contributions to inter-individual differences in aesthetic evaluation after controlling for confounding effects
 Table: /02_scripts/03_CTD_results/02_CTD_outputs.R
 
-### File S1
-+ /03_outputs/processedData/03_CTD_results/02_SF1_SAT_results.csv : /02_scripts/03_CTD_results/02_CTD_outputs.R
+### Supplementary File 1
++ /03_outputs/processedData/03_CTD_results/02_SF1_SAT_results.csv; script: /02_scripts/03_CTD_results/02_CTD_outputs.R
 
-### File S2
-+ /03_outputs/processedData/03_CTD_results/02_SF2_ACE_results.csv : /02_scripts/03_CTD_results/02_CTD_outputs.R
+### Supplementary File 2
++ /03_outputs/processedData/03_CTD_results/02_SF2_ACE_results.csv; script: /02_scripts/03_CTD_results/02_CTD_outputs.R
 
-### File S3
-+ /03_outputs/processedData/03_CTD_results/02_SF3_ACE_ci.csv : /02_scripts/03_CTD_results/02_CTD_outputs.R
+### Supplementary File 3
++ /03_outputs/processedData/03_CTD_results/02_SF3_ACE_ci.csv; script: /02_scripts/03_CTD_results/02_CTD_outputs.R
+
+### Supplementary File 4
++ /05_figures/00_F1b_VPC_sourceData.csv; script: /02_scripts/03_CTD_results/00_vizualize.R
+
 
 ## License 
 

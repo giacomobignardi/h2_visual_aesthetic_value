@@ -124,6 +124,11 @@ F1b
 dev.off()
 
 
+##Supplementary File 4 (Editorial Request)####
+#save source data
+write_csv(VCAsummary %>% mutate(across(Value:mBi, ~ round(.,3))),sprintf("%s/%s/00_F1b_VPC_sourceData.csv",wdOA,wdOA_ImageOutput))
+
+
 #F2####
 Twin_phenoR =
   rbind(
