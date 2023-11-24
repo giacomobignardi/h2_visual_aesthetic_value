@@ -367,8 +367,8 @@ p3_sutherland = ggplot(data = melted_Sutherland_rE, aes(x=Var1, y=Var2, fill=val
   coord_fixed(ratio = 1)
 
 
-#Fig4####
-pdf(sprintf("%s/%s/04_F4_multivariate_CTD.pdf",wdOA,wdOA_ImageOutput), 
+#Fig5####
+pdf(sprintf("%s/%s/04_F5_multivariate_CTD.pdf",wdOA,wdOA_ImageOutput), 
     width = 10,
     height = 6.5)
 (p1_germine|p2_germine|p3_germine)/(p1_sutherland|p2_sutherland|p3_sutherland) + plot_layout(guides = 'collect')

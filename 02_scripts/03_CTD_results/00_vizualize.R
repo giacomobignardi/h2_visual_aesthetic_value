@@ -50,8 +50,12 @@ load(sprintf("%s/%s/01_Germine_2015/03_sup_FS6_pairwise_agreement.Rdata",wdOA,wd
 load(sprintf("%s/%s/02_Sutherland_2020/03_sup_FS6_pairwise_agreement_val.Rdata",wdOA,wdOA_output))
 
 #Twin correlations
-load(sprintf("%s/%s/01_Germine_2015/03_Fig_F2a_pairwise_agreement.Rdata",wdOA,wdOA_output))
-load(sprintf("%s/%s/02_Sutherland_2020/03_Figure2b_pairwise_agreement.Rdata",wdOA,wdOA_output))
+#before editorial request
+# load(sprintf("%s/%s/01_Germine_2015/03_Fig_F2a_pairwise_agreement.Rdata",wdOA,wdOA_output))
+# load(sprintf("%s/%s/02_Sutherland_2020/03_Figure2b_pairwise_agreement.Rdata",wdOA,wdOA_output))
+
+load(sprintf("%s/%s/01_Germine_2015/03_Fig_F2a_pairwise_agreement_revised.Rdata",wdOA,wdOA_output))
+load(sprintf("%s/%s/02_Sutherland_2020/03_Figure2b_pairwise_agreement_revised.Rdata",wdOA,wdOA_output))
 
 Sce_eb_Germine = read_csv(sprintf("%s/%s/01_Germine_2015/07_2_SAT_eb_scenes_parameters.csv",wdOA,wdOA_output))%>%mutate(sample = "", domain = "scenes", phenotype = "e-b")
 Fac_eb_Germine = read_csv(sprintf("%s/%s/01_Germine_2015/07_1_SAT_eb_faces_parameters.csv",wdOA,wdOA_output))%>%mutate(sample = "", domain = "faces", phenotype = "e-b") 
@@ -129,7 +133,50 @@ dev.off()
 write_csv(VCAsummary %>% mutate(across(Value:mBi, ~ round(.,3))),sprintf("%s/%s/00_F1b_VPC_sourceData.csv",wdOA,wdOA_ImageOutput))
 
 
-#F2####
+#F2: after editorial request####
+F2a = p_pairwise_r_revised + 
+  scale_color_manual(values = rev(col_updt)) +
+  scale_fill_manual(values = rev(col_updt)) +  
+  theme(axis.text.x =  element_text(angle = 45, hjust = .5, vjust = .5)) + 
+  ylab("pairwise-agreement")+ 
+  xlab("")+
+  scale_x_discrete(labels= c("abstracts","scenes","faces"))+ 
+  guides(colour = guide_legend(nrow = 3))
+
+F2b = p_pairwise_r_revised_zoom + 
+  scale_color_manual(values = rev(col_updt)) +
+  scale_fill_manual(values = rev(col_updt)) +  
+  theme(axis.text.x =  element_text(angle = 45, hjust = .5, vjust = .5)) + 
+  ylab("")+ 
+  xlab("")+
+  scale_x_discrete(labels= c("abstracts","scenes","faces"))+ 
+  guides(colour = guide_legend(nrow = 3))
+
+F2c = p_pairwise_r_val_revised + 
+  scale_color_manual(values = rev(col_updt)) +
+  scale_fill_manual(values = rev(col_updt))+  
+  theme(axis.text.x =  element_text(angle = 45, hjust = .5, vjust = .5))+
+  ylab("pairwise-agreement")+
+  xlab("")+  
+  scale_x_discrete(labels= c("scenes","faces"))+ 
+  guides(colour = guide_legend(nrow = 3))
+
+F2d = p_pairwise_r_val_revised_zoom + 
+  scale_color_manual(values = rev(col_updt)) +
+  scale_fill_manual(values = rev(col_updt))+  
+  theme(axis.text.x =  element_text(angle = 45, hjust = .5, vjust = .5))+
+  ylab("")+
+  xlab("")+  
+  scale_x_discrete(labels= c("scenes","faces"))+ 
+  guides(colour = guide_legend(nrow = 3))
+
+pdf(sprintf("%s/%s/00_F2_pairwise_agreement_revised.pdf",wdOA,wdOA_ImageOutput), 
+    width = 7, 
+    height = 7)
+((F2a+ theme(legend.position = "none")|F2b)/(F2c+ theme(legend.position = "none")|F2d)) + plot_layout(guides = 'collect') + plot_annotation(tag_levels = 'a')&theme(plot.tag = element_text(face = 'bold'))
+dev.off()
+
+#F3: after editorial request####
 Twin_phenoR =
   rbind(
     Sce_eb_Germine,Fac_eb_Germine,Obj_eb_Germine,
@@ -149,7 +196,7 @@ Twin_pheno = Twin_phenoR%>%
 #col = viridis::viridis(3)[2:3] col before review  
 col_updt = wesanderson::wes_palette("Darjeeling1")[c(2,4,5)]
 
-F2c  = ggplot(Twin_pheno%>%filter(sample == "")%>%filter(phenotype == "t-t"), aes(domain, y = estimate, color = Zygosity)) + 
+F3a  = ggplot(Twin_pheno%>%filter(sample == "")%>%filter(phenotype == "t-t"), aes(domain, y = estimate, color = Zygosity)) + 
   geom_point(size = 2, position = position_dodge(.9)) +
   geom_errorbar(aes(ymin = lbound, ymax = ubound), size = 1, width = .1, position = position_dodge(.9)) +
   coord_flip() +
@@ -163,21 +210,7 @@ F2c  = ggplot(Twin_pheno%>%filter(sample == "")%>%filter(phenotype == "t-t"), ae
   labs(y = "",
        x = "Taste-typicality")
 
-F2e  = ggplot(Twin_pheno%>%filter(sample == "")%>%filter(phenotype == "e-b"), aes(domain, y = estimate, color = Zygosity)) + 
-  geom_point(size = 2, position = position_dodge(.9)) +
-  geom_errorbar(aes(ymin = lbound, ymax = ubound), size = 1, width = .1, position = position_dodge(.9)) +
-  coord_flip() +
-  geom_hline(yintercept = 0, linetype = 2, alpha = 0.1) +
-  scale_color_manual(values = rev(col_updt[1:2])) + 
-  ylim(-.1,1) +
-  theme_classic(base_size = 14) +
-  theme(axis.text.x =  element_text(angle = 45, hjust = .5, vjust = .5),
-        legend.position = "none") +
-  scale_x_discrete(labels= c("abstracts","faces","scenes"))+
-  labs(y = "Phenotypic r",
-       x = "Evaluation-bias")
-
-F2d  = ggplot(Twin_pheno%>%
+F3b  = ggplot(Twin_pheno%>%
                 filter(sample == "val.")%>%filter(phenotype == "t-t"), aes(Domain, y = estimate, color = Zygosity)) + 
   geom_point(size = 2, position = position_dodge(.9)) +
   geom_errorbar(aes(ymin = lbound, ymax = ubound), size = 1, width = .1, position = position_dodge(.9)) +
@@ -192,7 +225,22 @@ F2d  = ggplot(Twin_pheno%>%
   labs(y = "",
        x = "")
 
-F2f  = ggplot(Twin_pheno%>%filter(sample == "val.")%>%filter(phenotype == "e-b"), aes(Domain, y = estimate, color = Zygosity)) + 
+F3c  = ggplot(Twin_pheno%>%filter(sample == "")%>%filter(phenotype == "e-b"), aes(domain, y = estimate, color = Zygosity)) + 
+  geom_point(size = 2, position = position_dodge(.9)) +
+  geom_errorbar(aes(ymin = lbound, ymax = ubound), size = 1, width = .1, position = position_dodge(.9)) +
+  coord_flip() +
+  geom_hline(yintercept = 0, linetype = 2, alpha = 0.1) +
+  scale_color_manual(values = rev(col_updt[1:2])) + 
+  ylim(-.1,1) +
+  theme_classic(base_size = 14) +
+  theme(axis.text.x =  element_text(angle = 45, hjust = .5, vjust = .5),
+        legend.position = "none") +
+  scale_x_discrete(labels= c("abstracts","faces","scenes"))+
+  labs(y = "Phenotypic r",
+       x = "Evaluation-bias")
+
+
+F3d  = ggplot(Twin_pheno%>%filter(sample == "val.")%>%filter(phenotype == "e-b"), aes(Domain, y = estimate, color = Zygosity)) + 
   geom_point(size = 2, position = position_dodge(.9)) +
   geom_errorbar(aes(ymin = lbound, ymax = ubound), size = 1, width = .1, position = position_dodge(.9)) +
   coord_flip() +
@@ -206,27 +254,23 @@ F2f  = ggplot(Twin_pheno%>%filter(sample == "val.")%>%filter(phenotype == "e-b")
   labs(y = "Phenotypic r",
        x = "")
 
-F2a = p_pairwise_r + scale_color_manual(values = rev(col_updt)) +  theme(axis.text.x =  element_text(angle = 45, hjust = .5, vjust = .5)) + ylab("pairwise-agreement")+ xlab("")+theme(legend.position = "bottom") + scale_x_discrete(labels= c("abstracts","scenes","faces"))
-F2b = p_pairwise_r_val + scale_color_manual(values = rev(col_updt)) +  theme(axis.text.x =  element_text(angle = 45, hjust = .5, vjust = .5))+ylab("")+xlab("")+  scale_x_discrete(labels= c("scenes","faces"))+ theme(legend.position = "bottom") + scale_x_discrete(labels= c("scenes","faces"))
 
-
-pdf(sprintf("%s/%s/00_F2_CTD.pdf",wdOA,wdOA_ImageOutput), 
+pdf(sprintf("%s/%s/00_F3_CTD_revised.pdf",wdOA,wdOA_ImageOutput), 
     width = 13.5, 
     height = 8)
-((((F2a | F2b) /
-    (F2c | F2d) /
-    (F2e | F2f))+ plot_layout(guides = 'collect')) |(h2_comparison +theme_classic(base_size = 14) + theme(legend.position = "bottom"))) + plot_annotation(tag_levels = 'a')&theme(plot.tag = element_text(face = 'bold'),legend.position = 'bottom')
+((((F3a | F3b) /
+    (F3c | F3d))+ plot_layout(guides = 'collect')) |(h2_comparison +theme_classic(base_size = 14) + theme(legend.position = "bottom"))) + plot_annotation(tag_levels = 'a')&theme(plot.tag = element_text(face = 'bold'),legend.position = 'bottom')
 dev.off()
 
-#F3####
-pdf(sprintf("%s/%s/00_F3_crosstrait_pheno_cor.pdf",wdOA,wdOA_ImageOutput), 
+#F4####
+pdf(sprintf("%s/%s/00_F4_crosstrait_pheno_cor.pdf",wdOA,wdOA_ImageOutput), 
     width = 13.5, 
     height = 4)
 (pCor_t1_germine|pCor_t2_germine|pCor_t1_sutherland|pCor_t2_sutherland)+ plot_layout(guides = 'collect') + plot_annotation(tag_levels = 'a') & theme(plot.tag = element_text(face = 'bold'))
 dev.off()
 
-#F4####
-#see 04 CTD multivariate for figure 4
+#F5####
+#see 04 CTD multivariate for figure 5
 
 #SUPPLEMENTARY####
 #SF1:Rxx####

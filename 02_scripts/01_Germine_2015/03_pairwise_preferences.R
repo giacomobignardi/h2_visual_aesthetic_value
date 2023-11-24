@@ -1,7 +1,7 @@
 #Author: Giacomo Bignardi
 #Adapted from: NA
 #Date: 28-04-2021
-#Last modified: 18-09-2023
+#Last modified: 23-11-2023
 #
 #
 #Description:
@@ -625,18 +625,68 @@ write_csv(emmPairs2Domain_csv,sprintf("%s/%s/01_Germine_2015/03_sup_pairwise_pai
 #save pariswise agreeemnt
 write_csv(InterR_random_noOut,sprintf("%s/%s/01_Germine_2015/03_pairwise_agreement_Germine2015.csv",wdOA,wdOA_output))
 
-####Figure 2####
-PairsXDomain_mod_r = lm(r_twin_PP ~ +Pairs * Domain, data = InterR_random_noOut)
-#final plot (r transformed)
-p_pairwise_r = emmip(PairsXDomain_mod_r, Pairs ~ Domain) +
-  theme_bw(base_size = 14) + 
-  ylim(c(0.2,0.8))+
+# ####Figure 2: before editorial####
+# PairsXDomain_mod_r = lm(r_twin_PP ~ +Pairs * Domain, data = InterR_random_noOut)
+# #final plot (r transformed)
+# p_pairwise_r = emmip(PairsXDomain_mod_r, Pairs ~ Domain, CIs = TRUE) +
+#   theme_bw(base_size = 14) + 
+#   ylim(c(0.2,0.8))+
+#   scale_color_viridis_d() + #note that final color has been changed after Review 01
+#   labs(y = "pairwsie agreement",
+#        x = "Visual domains")
+# #save for later plotting
+# save(p_pairwise_r,file =sprintf("%s/%s/01_Germine_2015/03_Fig_F2a_pairwise_agreement.Rdata",wdOA,wdOA_output))
+
+####Figure 2: after editorial request####
+#Sample mean and CI
+InterR_random_noOut_mean = InterR_random_noOut %>%
+  group_by(Domain,Pairs) %>% 
+  summarise(mean = mean(z_twin_PP, na.rm = TRUE),
+            sd = sd(z_twin_PP, na.rm = TRUE),
+            n = n()) %>%
+  #calculate lower and upped boundaries of 95% CI
+  mutate(se = sd/sqrt(n),
+         lower.ci = psych::fisherz2r(mean - qt(1 - (0.05 / 2), df = n - 1) * se),
+         upper.ci = psych::fisherz2r(mean + qt(1 - (0.05 / 2), df = n - 1) * se),
+         r_twin_PP = psych::fisherz2r(mean))%>% 
+  select(Domain, Pairs,r_twin_PP, lower.ci,upper.ci) 
+
+#visualzie individual datapoints and CI
+set.seed(42)
+p_pairwise_r_revised = ggplot(InterR_random_noOut_mean) + 
+  geom_jitter(data = InterR_random_noOut,aes(Domain,r_twin_PP, color = Pairs),
+              alpha = .05,
+              width = 0.1,
+              size =.50) +
+  geom_line(aes(Domain, r_twin_PP, color = Pairs, group = Pairs))+
+  geom_point(aes(Domain, r_twin_PP, color = Pairs), size = 1.5)+
+  geom_errorbar(aes(x =Domain, ymin = lower.ci, ymax = upper.ci, color = Pairs), width = .1)+
   scale_color_viridis_d() + #note that final color has been changed after Review 01
-  labs(y = "pairwsie agreement",
-       x = "Visual domains")
+  scale_y_continuous(lim= c(-0.5,1), breaks = seq(-0.5,1,by = .25))+
+  labs(y = "pairwise agreement",
+       x = "Visual domains")+
+  theme_light()
+
+p_pairwise_r_revised_zoom = ggplot(InterR_random_noOut_mean) + 
+  geom_line(aes(Domain, r_twin_PP, color = Pairs, group = Pairs))+
+  geom_point(aes(Domain, r_twin_PP, color = Pairs), size = 1.5)+
+  geom_errorbar(aes(x =Domain, ymin = lower.ci, ymax = upper.ci, color = Pairs), width = .1)+
+  scale_color_viridis_d() + #note that final color has been changed after Review 01
+  scale_y_continuous(lim= c(.25,.85), breaks = seq(.25,.85,by = .1))+
+  labs(y = "pairwise agreement",
+       x = "Visual domains")+
+  theme_light()
 
 #save for later plotting
-save(p_pairwise_r,file =sprintf("%s/%s/01_Germine_2015/03_Fig_F2a_pairwise_agreement.Rdata",wdOA,wdOA_output))
+save(p_pairwise_r_revised,p_pairwise_r_revised_zoom,file =sprintf("%s/%s/01_Germine_2015/03_Fig_F2a_pairwise_agreement_revised.Rdata",wdOA,wdOA_output))
+
+##Supplementary File 5 (Editorial Request)####
+#save source data
+write_csv(InterR_random_noOut_mean,sprintf("%s/%s/01_Germine_2015/03_Fig_F2a_summary_pairwise_agreement_revised_sourceData.csv",wdOA,wdOA_output))
+
+
+
+
 #Supplementary Fig 3####
 #intra rater dist
 p1 = ggplot(InterR_random_noOut, aes( y = r_twin_PP, fill = Pairs)) +
