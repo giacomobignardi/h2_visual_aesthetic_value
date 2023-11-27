@@ -344,8 +344,8 @@ png(sprintf("%s/%s/supplementary/04_SF10_ACE_power_discovery.png",wdOA,wdOA_Imag
     unit = "px",
     res = 300,
     bg = "white")
-((plot_spacer()|p_pow_dis_sce_eb|p_pow_dis_fac_eb) /
-    (p_pow_dis_abs_tt|p_pow_dis_sce_tt|p_pow_dis_fac_tt)) + plot_layout(guides = "collect") + plot_annotation(tag_levels = "a")
+((p_pow_dis_abs_tt|p_pow_dis_sce_tt|p_pow_dis_fac_tt)/
+    (plot_spacer()|p_pow_dis_sce_eb|p_pow_dis_fac_eb)) + plot_layout(guides = "collect") + plot_annotation(tag_levels = "a")
 dev.off()
 
 png(sprintf("%s/%s/supplementary/04_SF11_ACE_power_validation.png",wdOA,wdOA_ImageOutput),
@@ -354,74 +354,8 @@ png(sprintf("%s/%s/supplementary/04_SF11_ACE_power_validation.png",wdOA,wdOA_Ima
     unit = "px",
     res = 300,
     bg = "white")
-((p_pow_val_sce_eb|p_pow_val_fac_eb) /
-    (p_pow_val_sce_tt|plot_spacer())) + plot_layout(guides = "collect")+ plot_annotation(tag_levels = "a") & theme(legend.position = "none")
+( (p_pow_val_sce_tt|plot_spacer())/
+    (p_pow_val_sce_eb|p_pow_val_fac_eb)
+    ) + plot_layout(guides = "collect")+ plot_annotation(tag_levels = "a") & theme(legend.position = "none")
 dev.off()
 
-
-p_pow_area =   
-  ggplot(powCurve_dis_fac_eb %>% filter(component == "C"))+
-  geom_line(aes(family_n, power, color = as.factor(C)),size = 1.5, alpha = .5)+ 
-  theme_classic(base_size = 12)+ 
-  ylim(0,1)+
-  geom_hline(yintercept = .80, linetype = "dashed")+
-  geom_vline(xintercept = x_sample_dis,  linetype = "dashed", color = "gray")+
-  labs(y = "Power",
-       x = "Family-wise sample",
-       color = "C")+
-  scale_color_viridis_d()
-
-
-p_pow_area =   
-  ggplot(powCurve_dis %>% filter(component == "C"))+
-  geom_line(aes(family_n, power, color = as.factor(C)),size = 1.5, alpha = .5)+ 
-  geom_point(data=xC_dis,aes(family_n, power))+
-  theme_classic(base_size = 12)+ 
-  ylim(0,1)+
-  geom_hline(yintercept = .80, linetype = "dashed")+
-  geom_vline(xintercept = x_sample_dis,  linetype = "dashed", color = "gray")+
-  labs(y = "Power",
-       x = "Family-wise sample",
-       color = "C")+
-  scale_color_viridis_d()
-                                      
-
-                                 
-p_pow_volm =  powCurve_volm %>% 
-  ggplot(aes(family_n, power, color = component,))+
-  geom_line(linewidth = 2, alpha = .5)+ 
-  theme_classic(base_size = 12)+ 
-  ylim(0,1)+
-  geom_hline(yintercept = .80, linetype = "dashed")+
-  geom_vline(xintercept = x_sample,  linetype = "dashed", color = "gray")+
-  geom_vline(xintercept = xA_volm, linetype = "dashed")+
-  geom_vline(xintercept = xC_volm, linetype = "dashed")+
-  labs(y = "",
-       x = "Family-wise sample",
-       subtitle = "Volume")+
-  scale_color_manual(values = c("#026A37",
-                                         "#538BB5"))
-                                         
-p_pow_thic =  powCurve_thic %>% 
-  ggplot(aes(family_n, power, color = component,))+
-  geom_line(linewidth = 2, alpha = .5)+ 
-  theme_classic(base_size = 12)+ 
-  ylim(0,1)+
-  geom_hline(yintercept = .80, linetype = "dashed")+
-  geom_vline(xintercept = x_sample, linetype = "dashed", color = "gray")+
-  geom_vline(xintercept = xA_thic, linetype = "dashed")+
-  geom_vline(xintercept = xC_thic, linetype = "dashed")+
-  labs(y = "",
-       x = "Family-wise sample",
-       subtitle = "Thickness")+
-  scale_color_manual(values = c("#026A37",
-                                         "#538BB5"))
-                                         
-
-(p_pow_area|p_pow_volm|p_pow_thic) +plot_layout(guides = "collect") + plot_annotation(tag_levels = "A")
-
-pdf(sprintf("%s/05_images/image/HG_ACE_power.pdf",wdNOA),
-    width = 10,
-    height =3 )
-(p_pow_area|p_pow_volm|p_pow_thic) +plot_layout(guides = "collect") + plot_annotation(tag_levels = "A") & theme(legend.position = "none")
-dev.off()
