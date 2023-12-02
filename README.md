@@ -1,5 +1,7 @@
 ## Genetic effects on variability in visual aesthetic evaluations are partially shared across visual domains
 
+[![DOI](https://zenodo.org/badge/707185913.svg)](https://zenodo.org/doi/10.5281/zenodo.10251278)
+
 This repository contains the data, processed data, and the code to replicate the analysis made in:
 
 > Bignardi, G., Smit, D., Vessel, E. A., Trupp, M. D., Ticini, L. F., Fisher, S. E., & Polderman, T. J. (2023). Shared and Distinct Genetic Sources of Variability in Visual Aesthetic Value. https://doi.org/10.31234/osf.io/79nbq 
