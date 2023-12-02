@@ -1,4 +1,4 @@
-## Shared and Distinct Genetic Sources of Variability in Visual Aesthetic Value
+## Genetic effects on variability in visual aesthetic evaluations are partially shared across visual domains
 
 This repository contains the data, processed data, and the code to replicate the analysis made in:
 
@@ -7,21 +7,21 @@ This repository contains the data, processed data, and the code to replicate the
 ## Repository
 
 The following directories contain:
-+ 01_input: input data to reproduce the analysis (see 04-metadata). 
++ 01_input: input data to reproduce the analysis (see 04_metadata). 
 + 02_scripts: includes scripts for the analysis
 + 03_outputs: includes outputs generated via 02_scripts
-+ 04_metadata: includes instructions to download original data from Germine et al. (2015) and Sutherland et al. (2020).
-+ 05_figures: includes figures
++ 04_metadata: includes instructions to download original data from [Germine et al. (2015)](https://doi.org/10.1016/j.cub.2015.08.048) and [Sutherland et al. (2020)](https://doi.org/10.1073/pnas.1920131117).
++ 05_figures: includes unedited Figures
 
 Please note that the raw data supporting the findings of this study are fully available at https://osf.io/c3hz6/ and https://osf.io/35zf8/?view_only=e76c6755dcea4be2adc5b075cae896e8. 
-These data were originally collected by Germine et al. (2015) and Sutherland et al. (2020). This study is entirely built upon these data alone. 
+These data were originally collected by [Germine et al. (2015)](https://doi.org/10.1016/j.cub.2015.08.048) and [Sutherland et al. (2020)](https://doi.org/10.1073/pnas.1920131117). This study is entirely built upon these data alone. 
 
 
 ## Manuscript reproducibility
 
 Code to reproduce specific results or figures included in the subsections of the main and supplementary material can be found under the specific directories:
 
-### Visual domain-specific inter-individual differences in aesthetic evaluations.
+### Inter-individual differences in visual aesthetic evaluations.
 + Text: /02_scripts/03_CTD_results/00_vizualize.R
 + Table 1:  
 + /02_scripts/01_Germine_2015/01_prepare_df.R  
@@ -99,23 +99,25 @@ Table: /02_scripts/03_CTD_results/01_SAT_twin_correlations.R
 ### Table S2: Univariate modelling of genetic and environmental contributions to inter-individual differences in aesthetic evaluation after controlling for confounding effects
 Table: /02_scripts/03_CTD_results/02_CTD_outputs.R
 
-### Supplementary File 1
+### Supplementary Data 1
 + /03_outputs/processedData/03_CTD_results/02_SF1_SAT_results.csv; script: /02_scripts/03_CTD_results/02_CTD_outputs.R
 
-### Supplementary File 2
+### Supplementary Data 2
 + /03_outputs/processedData/03_CTD_results/02_SF2_ACE_results.csv; script: /02_scripts/03_CTD_results/02_CTD_outputs.R
 
-### Supplementary File 3
+### Supplementary Data 3
 + /03_outputs/processedData/03_CTD_results/02_SF3_ACE_ci.csv; script: /02_scripts/03_CTD_results/02_CTD_outputs.R
 
-### Supplementary File 4
+### Supplementary Data 4
 + /05_figures/00_F1b_VPC_sourceData.csv; script: /02_scripts/03_CTD_results/00_vizualize.R
 
-### Supplementary File 5
+### Supplementary Data 5
 + /03_outputs/processedData/01_Germine_2015/03_Fig_F2a_summary_pairwise_agreement_revised_sourceData.csv; script: /02_scripts/01_Germine_2015/03_pairwise_preferences.R
 
-### Supplementary File 6
+### Supplementary Data 6
 + /03_outputs/processedData/02_Sutherland_2020/03_Fig_F2b_summary_pairwise_agreement_revised_sourceData.csv; script: /02_scripts/02_Sutherland_2020/03_pairwise_preferences.R
+
+(Note that after revision, the supplementary material had to be reformatted. Sections S1, S2, etc.... were split into Supplementary Notes and Supplementary Figures.)
 
 ## License 
 
