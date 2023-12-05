@@ -687,6 +687,14 @@ write_csv(InterR_random_noOut_mean %>%
             select(Domain,Pairs, pairwise.r,lower.ci,upper.ci),
           sprintf("%s/%s/01_Germine_2015/03_Fig_F2a_summary_pairwise_agreement_revised_sourceData.csv",wdOA,wdOA_output))
 
+##Supplementary File 7 (Additional Editorial Request)####
+#save source data
+write_csv(InterR_random_noOut %>% 
+            mutate(pairwise.r = round(r_twin_PP,3))%>% 
+            select(Domain,Pairs, pairwise.r),
+          sprintf("%s/%s/01_Germine_2015/03_Fig_F2_individual_pairwise_agreement_revised_sourceData.csv",wdOA,wdOA_output))
+
+
 
 
 

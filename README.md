@@ -122,6 +122,10 @@ Table: /02_scripts/03_CTD_results/02_CTD_outputs.R
 ### Supplementary Data 7
 + /03_outputs/processedData/01_Germine_2015/03_Fig_F2_individual_pairwise_agreement_revised_sourceData.csv; script: /02_scripts/01_Germine_2015/03_pairwise_preferences.R
 
+### Supplementary Data 8
++ /03_outputs/processedData/02_Sutherland_2020/03_Fig_F2_individual_pairwise_agreement_revised_sourceData.csv; script: /02_scripts/02_Sutherland_2020/03_pairwise_preferences.R
+
+
 (Note that after revision, the supplementary material had to be reformatted. Sections S1, S2, etc.... were split into Supplementary Notes and Supplementary Figures.)
 
 ## License 

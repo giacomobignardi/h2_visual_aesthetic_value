@@ -603,6 +603,14 @@ write_csv(InterR_random_noOut_mean %>%
                      select(Domain,Pairs, pairwise.r,lower.ci,upper.ci)
           ,sprintf("%s/%s/02_Sutherland_2020/03_Fig_F2b_summary_pairwise_agreement_revised_sourceData.csv",wdOA,wdOA_output))
 
+##Supplementary File 7 (Additional Editorial Request)####
+#save source data
+write_csv(InterR_random_noOut %>% 
+            mutate(pairwise.r = round(r_twin_PP,3))%>% 
+            select(Domain,Pairs, pairwise.r),
+          sprintf("%s/%s/02_Sutherland_2020/03_Fig_F2_individual_pairwise_agreement_revised_sourceData.csv",wdOA,wdOA_output))
+
+
 #Supplementary Fig 3####
 #intra rater dist
 p1_val = ggplot(InterR_random_noOut, aes( y = r_twin_PP, fill = Pairs)) +
