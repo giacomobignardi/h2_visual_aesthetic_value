@@ -465,16 +465,16 @@ p3_sutherland_r = ggplot(data = melted_Sutherland_rE_r, aes(x=Var1, y=Var2, fill
 
 #FS7####
 pdf(sprintf("%s/%s/supplementary/04_SF7_phenotypic_cor_res.pdf",wdOA,wdOA_ImageOutput), 
-    width = 7,
+    width = 9,
     height = 5)
-(pCor_t1_sutherland_sensitivity_mm2|pCor_t1_sutherland_sensitivity_eb)+plot_layout(guides = 'collect') + plot_annotation(tag_levels = "a")
+(pCor_t1_sutherland_sensitivity_mm2|pCor_t1_sutherland_sensitivity_eb)+plot_layout(guides = 'collect') + plot_annotation(tag_levels = "a") &theme(legend.position = "right")
 dev.off()
 
 #FS8####
 pdf(sprintf("%s/%s/supplementary/04_SF8_multivariate_CTD_res.pdf",wdOA,wdOA_ImageOutput), 
-    width = 12,
-    height = 4)
-(p1_sutherland_r|p2_sutherland_r|p3_sutherland_r)+plot_layout(guides = 'collect') + plot_annotation(tag_levels = "a") & theme(legend.position = "none")
+    width = 14,
+    height = 7)
+(p1_sutherland_r|p2_sutherland_r|p3_sutherland_r)+plot_layout(guides = 'collect') + plot_annotation(tag_levels = "a") & theme(legend.position = "none")&theme(legend.position = "right")
 dev.off()
 
 

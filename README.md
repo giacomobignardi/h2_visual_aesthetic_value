@@ -114,19 +114,20 @@ Table: /02_scripts/03_CTD_results/02_CTD_outputs.R
 + /05_figures/00_F1b_VPC_sourceData.csv; script: /02_scripts/03_CTD_results/00_vizualize.R
 
 ### Supplementary Data 5
-+ /03_outputs/processedData/01_Germine_2015/03_Fig_F2a_summary_pairwise_agreement_revised_sourceData.csv; script: /02_scripts/01_Germine_2015/03_pairwise_preferences.R
-
-### Supplementary Data 6
-+ /03_outputs/processedData/02_Sutherland_2020/03_Fig_F2b_summary_pairwise_agreement_revised_sourceData.csv; script: /02_scripts/02_Sutherland_2020/03_pairwise_preferences.R
-
-### Supplementary Data 7
 + /03_outputs/processedData/01_Germine_2015/03_Fig_F2_individual_pairwise_agreement_revised_sourceData.csv; script: /02_scripts/01_Germine_2015/03_pairwise_preferences.R
 
-### Supplementary Data 8
+### Supplementary Data 6
++ /03_outputs/processedData/01_Germine_2015/03_Fig_F2a_summary_pairwise_agreement_revised_sourceData.csv; script: /02_scripts/01_Germine_2015/03_pairwise_preferences.R
+
+### Supplementary Data 7
 + /03_outputs/processedData/02_Sutherland_2020/03_Fig_F2_individual_pairwise_agreement_revised_sourceData.csv; script: /02_scripts/02_Sutherland_2020/03_pairwise_preferences.R
 
+### Supplementary Data 8
++ /03_outputs/processedData/02_Sutherland_2020/03_Fig_F2b_summary_pairwise_agreement_revised_sourceData.csv; script: /02_scripts/02_Sutherland_2020/03_pairwise_preferences.R
 
-(Note that after revision, the supplementary material had to be reformatted. Sections S1, S2, etc.... were split into Supplementary Notes and Supplementary Figures.)
++ *Note 1*: Please note that after revision, the supplementary material had to be reformatted. Sections S1, S2, etc.... were split into Supplementary Notes and Supplementary Figures.
+
++ *Note 2*: Please note that after revision, the order of Supplementary Data has changed. This readme is up to date with the final and official order for the Supplementary Data.
 
 ## License 
 
